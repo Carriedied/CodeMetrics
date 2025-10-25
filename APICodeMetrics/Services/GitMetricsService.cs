@@ -21,7 +21,7 @@ public class GitMetricsService : IGitMetricsCollector
         _logger.LogInformation("Initiating full project collection process.");
         try
         {
-            var result = await _projectCollector.CollectAllProjectsAsync(cancellationToken);
+            var result = await _projectCollector.CollectAsync(cancellationToken);
             _logger.LogInformation("Full project collection completed successfully.");
                 return true;
         }

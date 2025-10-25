@@ -18,7 +18,7 @@ public class DataController(
         logger.LogInformation("Received GET request for projects data.");
         try
         {
-            var data = await projectCollector.CollectAllProjectsAsync(cancellationToken);
+            var data = await projectCollector.CollectAsync(cancellationToken);
             logger.LogInformation("Returning data for {ProjectCount} projects.", data.Data?.Length ?? 0);
             return Ok(data); // Возвращает JSON в нужном формате
         }

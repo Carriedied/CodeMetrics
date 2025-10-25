@@ -4,5 +4,5 @@ namespace APICodeMetrics.Interfaces;
 
 public interface IProjectCollectorService
 {
-    Task<SferaCodeResponseWrapper<ProjectDto[]>> CollectAllProjectsAsync(CancellationToken cancellationToken = default);
+    Task<SferaCodeResponseWrapper<ProjectDto[]>> CollectAsync(CancellationToken cancellationToken = default);
 }

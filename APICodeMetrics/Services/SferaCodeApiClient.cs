@@ -1,0 +1,59 @@
+﻿using System.Net.Http.Headers;
+using System.Text;
+using System.Text.Json;
+using APICodeMetrics.Configuration;
+using APICodeMetrics.Interfaces;
+using APICodeMetrics.Models.DTO;
+using Microsoft.Extensions.Options;
+
+namespace APICodeMetrics.Services;
+
+public class SferaCodeApiClient : ISferaCodeApiClient
+{
+    private readonly HttpClient _httpClient;
+    private readonly SferaCodeApiConfig _config;
+    private readonly ILogger<SferaCodeApiClient> _logger;
+
+    public SferaCodeApiClient(HttpClient httpClient, IOptions<SferaCodeApiConfig> config, ILogger<SferaCodeApiClient> logger)
+    {
+        _httpClient = httpClient;
+        _config = config.Value;
+        _logger = logger;
+        _httpClient.BaseAddress = new Uri(_config.BaseUrl);
+        var credentials = $"{_config.Login}:{_config.Password}";
+        var encodedCredentials = Convert.ToBase64String(Encoding.UTF8.GetBytes(credentials));
+        _httpClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Basic", encodedCredentials);
+    }
+
+    public async Task<SferaCodeResponseWrapper<ProjectDto[]>> GetProjectsAsync(int start = 0, int limit = 25, CancellationToken cancellationToken = default)
+    {
+        var url = $"projects"; // Пока без пагинации в URL, так как в примере она не используется
+        _logger.LogDebug("Making GET request to: {BaseUrl}{Url}", _httpClient.BaseAddress, url);
+        _logger.LogDebug("Authorization Header: {AuthHeader}", _httpClient.DefaultRequestHeaders.Authorization);
+
+        var response = await _httpClient.GetAsync(url, cancellationToken);
+        response.EnsureSuccessStatusCode();
+        var json = await response.Content.ReadAsStringAsync(cancellationToken);
+
+        _logger.LogDebug("Response Body from /projects: {JsonResponse}", json);
+
+        var wrapper = JsonSerializer.Deserialize<SferaCodeResponseWrapper<ProjectDto[]>>(json, new JsonSerializerOptions { PropertyNameCaseInsensitive = true });
+        return wrapper ?? new SferaCodeResponseWrapper<ProjectDto[]> { Data = Array.Empty<ProjectDto>() };
+    }
+
+    public async Task<SferaCodeResponseWrapper<RepositoryDto[]>> GetRepositoriesAsync(string projectKey, int start = 0, int limit = 25, CancellationToken cancellationToken = default)
+    {
+        var url = $"projects/{projectKey}/repos"; // Пока без пагинации в URL
+        _logger.LogDebug("Making GET request to: {BaseUrl}{Url}", _httpClient.BaseAddress, url);
+        _logger.LogDebug("Authorization Header: {AuthHeader}", _httpClient.DefaultRequestHeaders.Authorization);
+
+        var response = await _httpClient.GetAsync(url, cancellationToken);
+        response.EnsureSuccessStatusCode();
+        var json = await response.Content.ReadAsStringAsync(cancellationToken);
+
+        _logger.LogDebug("Response Body from /projects/{ProjectKey}/repos: {JsonResponse}", projectKey, json);
+
+        var wrapper = JsonSerializer.Deserialize<SferaCodeResponseWrapper<RepositoryDto[]>>(json, new JsonSerializerOptions { PropertyNameCaseInsensitive = true });
+        return wrapper ?? new SferaCodeResponseWrapper<RepositoryDto[]> { Data = Array.Empty<RepositoryDto>() };
+    }
+}

@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("APICodeMetrics.Data")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+933f8784180a0ccf02970dfe03418598904000c2")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+3c324570bde400f4f636e8729a05d944d7fad4d4")]
 [assembly: System.Reflection.AssemblyProductAttribute("APICodeMetrics.Data")]
 [assembly: System.Reflection.AssemblyTitleAttribute("APICodeMetrics.Data")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

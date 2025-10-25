@@ -1,0 +1,87 @@
+# Версия синтаксиса Docker Compose
+version: '3.8'
+
+# Определяем сервисы (контейнеры)
+services:
+  # Сервис базы данных PostgreSQL
+  postgres_db:
+    # Используем официальный образ PostgreSQL версии 15
+    image: postgres:17
+    # Присваиваем контейнеру имя для удобства
+    container_name: codemetrics_postgres
+    # Переменные окружения для настройки PostgreSQL при запуске
+    environment:
+      # Имя базы данных по умолчанию
+      POSTGRES_DB: CodeMetricsBd
+      # Имя пользователя по умолчанию
+      POSTGRES_USER: postgres # Замените на желаемое имя пользователя
+      # Пароль пользователя по умолчанию
+      POSTGRES_PASSWORD: TicTacToe # ЗАМЕНИТЕ НА НАДЕЖНЫЙ ПАРОЛЬ!
+    # Пробрасываем порт 5432 контейнера на порт 5432 хоста
+    # Это позволяет подключаться к БД извне (например, через pgAdmin или Rider)
+    ports:
+      - "5432:5432"
+    # Определяем том для постоянного хранения данных PostgreSQL
+    # Даже если контейнер будет удален, данные останутся
+    volumes:
+      # 'postgres_data' - это именованный том, определенный внизу файла
+      # Он монтируется в стандартную директорию данных PostgreSQL внутри контейнера
+      - postgres_data:/var/lib/postgresql/data
+    # Указываем сеть, в которой будет работать этот сервис
+    networks:
+      - app-network
+    # (Опционально) Проверка состояния готовности БД
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U postgres_user -d CodeMetricsBd"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+  # Сервис вашего ASP.NET Core API
+  api_codemetrics:
+    # Собираем образ из Dockerfile, находящегося в текущей директории (.)
+    build:
+      context: .
+      dockerfile: Dockerfile
+    # Присваиваем контейнеру имя
+    container_name: codemetrics_api
+    # Пробрасываем порт 8080 хоста на порт 80 контейнера
+    # Ваше API будет доступно по адресу http://localhost:8080
+    ports:
+      - "8080:80"
+    # Переменные окружения для контейнера API
+    environment:
+      # Указываем, что среда выполнения - Production
+      # Это заставит приложение использовать appsettings.Production.json (если он есть)
+      - ASPNETCORE_ENVIRONMENT=Production
+      # Строка подключения к PostgreSQL
+      # ВАЖНО: Host=postgres_db - это имя сервиса БД, определенное выше
+      # Docker Compose автоматически настраивает DNS, чтобы имя 'postgres_db' разрешалось в IP контейнера БД
+      - ConnectionStrings__DefaultConnection=Host=postgres_db;Port=5432;Database=CodeMetricsBd;Username=postgres_user;Password=postgres_password
+    # Указываем зависимости. API не будет запускаться, пока postgres_db не будет "healthy"
+    depends_on:
+      postgres_db:
+        condition: service_healthy # Ждать, пока БД будет готова
+    # Указываем сеть для этого сервиса
+    networks:
+      - app-network
+    # (Опционально) Проверка состояния готовности API
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost/health"] # Предполагается наличие эндпоинта /health
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 40s # Даем время API запуститься
+
+# Определяем тома для постоянного хранения данных
+volumes:
+  # 'postgres_data' - это именованный том
+  # Docker управляет им автоматически, обычно размещает в /var/lib/docker/volumes/
+  postgres_data:
+
+# Определяем сети для связи между контейнерами
+networks:
+  # 'app-network' - это пользовательская сеть типа bridge
+  # Контейнеры в одной сети могут общаться по именам сервисов
+  app-network:
+    driver: bridge

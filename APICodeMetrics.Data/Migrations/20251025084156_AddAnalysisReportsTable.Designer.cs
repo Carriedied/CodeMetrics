@@ -3,6 +3,7 @@ using System;
 using APICodeMetrics.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 
@@ -11,9 +12,11 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace APICodeMetrics.Data.Migrations
 {
     [DbContext(typeof(ApiCodeMetricsContext))]
-    partial class ApiCodeMetricsContextModelSnapshot : ModelSnapshot
+    [Migration("20251025084156_AddAnalysisReportsTable")]
+    partial class AddAnalysisReportsTable
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder

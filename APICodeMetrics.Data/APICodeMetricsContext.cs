@@ -13,6 +13,7 @@ public class ApiCodeMetricsContext : DbContext
     public DbSet<RepoBranch> RepoBranches { get; set; } = null!;
     public DbSet<RepoCommit> RepoCommits { get; set; } = null!;
     public DbSet<RepoFile> RepoFiles { get; set; } = null!;
+    public DbSet<AnalysisResult> AnalysisReports { get; set; } = null!;
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
@@ -53,6 +54,10 @@ public class ApiCodeMetricsContext : DbContext
             .HasForeignKey(rf => rf.CommitId)
             .OnDelete(DeleteBehavior.Cascade);
 
-            // Другие настройки...
-        }
+        modelBuilder.Entity<AnalysisResult>(entity =>
+        {
+            entity.Property(e => e.Content).HasColumnType("text"); // Убедитесь, что Content будет TEXT
+            entity.Property(e => e.AnalysisVersion).HasMaxLength(255); // Установите разумный лимит для версии
+        });
+    }
 }

@@ -37,8 +37,8 @@ namespace APICodeMetrics.Data.Migrations
                     Description = table.Column<string>(type: "text", nullable: true),
                     IsPublic = table.Column<bool>(type: "boolean", nullable: false),
                     LfsAllow = table.Column<bool>(type: "boolean", nullable: false),
-                    CreatedAt = table.Column<DateTime>(type: "timestamp with time zone", nullable: false),
-                    UpdatedAt = table.Column<DateTime>(type: "timestamp with time zone", nullable: false)
+                    CreatedAt = table.Column<DateTime>(type: "timestamp with time zone", nullable: true),
+                    UpdatedAt = table.Column<DateTime>(type: "timestamp with time zone", nullable: true)
                 },
                 constraints: table =>
                 {
@@ -58,8 +58,8 @@ namespace APICodeMetrics.Data.Migrations
                     OwnerName = table.Column<string>(type: "character varying(255)", maxLength: 255, nullable: false),
                     CloneLinkHttps = table.Column<string>(type: "text", nullable: false),
                     CloneLinkSsh = table.Column<string>(type: "text", nullable: false),
-                    CreatedAt = table.Column<DateTime>(type: "timestamp with time zone", nullable: false),
-                    UpdatedAt = table.Column<DateTime>(type: "timestamp with time zone", nullable: false),
+                    CreatedAt = table.Column<DateTime>(type: "timestamp with time zone", nullable: true),
+                    UpdatedAt = table.Column<DateTime>(type: "timestamp with time zone", nullable: true),
                     ProjectId = table.Column<int>(type: "integer", nullable: false)
                 },
                 constraints: table =>
@@ -82,8 +82,8 @@ namespace APICodeMetrics.Data.Migrations
                     Name = table.Column<string>(type: "character varying(255)", maxLength: 255, nullable: false),
                     IsProtected = table.Column<bool>(type: "boolean", nullable: false),
                     TargetBranch = table.Column<string>(type: "character varying(255)", maxLength: 255, nullable: false),
-                    CreatedAt = table.Column<DateTime>(type: "timestamp with time zone", nullable: false),
-                    UpdatedAt = table.Column<DateTime>(type: "timestamp with time zone", nullable: false),
+                    CreatedAt = table.Column<DateTime>(type: "timestamp with time zone", nullable: true),
+                    UpdatedAt = table.Column<DateTime>(type: "timestamp with time zone", nullable: true),
                     RepositoryId = table.Column<int>(type: "integer", nullable: false)
                 },
                 constraints: table =>
@@ -103,10 +103,10 @@ namespace APICodeMetrics.Data.Migrations
                 {
                     Id = table.Column<int>(type: "integer", nullable: false)
                         .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
-                    Sha1 = table.Column<string>(type: "character varying(255)", maxLength: 255, nullable: false),
-                    Message = table.Column<string>(type: "character varying(255)", maxLength: 255, nullable: false),
-                    CreatedAt = table.Column<DateTime>(type: "timestamp with time zone", nullable: false),
-                    UpdatedAt = table.Column<DateTime>(type: "timestamp with time zone", nullable: false),
+                    Sha1 = table.Column<string>(type: "text", maxLength: 2147483647, nullable: false),
+                    Message = table.Column<string>(type: "text", maxLength: 2147483647, nullable: false),
+                    CreatedAt = table.Column<DateTime>(type: "timestamp with time zone", nullable: true),
+                    UpdatedAt = table.Column<DateTime>(type: "timestamp with time zone", nullable: true),
                     AuthorId = table.Column<int>(type: "integer", nullable: false),
                     CommitterId = table.Column<int>(type: "integer", nullable: false),
                     BranchId = table.Column<int>(type: "integer", nullable: false)

@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "NnnCnzbLfWM=",
+  "dgSpecHash": "q+44+aG604k=",
   "success": true,
-  "projectFilePath": "C:\\Users\\Zhere\\RiderProjects\\APICodeMetrics\\APICodeMetrics\\APICodeMetrics.csproj",
+  "projectFilePath": "C:\\Users\\Zhere\\OneDrive\\Документы\\GitHub\\CodeMetrics\\APICodeMetrics\\APICodeMetrics.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\Zhere\\.nuget\\packages\\humanizer.core\\2.14.1\\humanizer.core.2.14.1.nupkg.sha512",
     "C:\\Users\\Zhere\\.nuget\\packages\\microsoft.aspnetcore.openapi\\9.0.7\\microsoft.aspnetcore.openapi.9.0.7.nupkg.sha512",

@@ -10,3 +10,16 @@ C:\Users\Zhere\RiderProjects\APICodeMetrics\APICodeMetrics.Data\obj\Debug\net9.0
 C:\Users\Zhere\RiderProjects\APICodeMetrics\APICodeMetrics.Data\obj\Debug\net9.0\refint\APICodeMetrics.Data.dll
 C:\Users\Zhere\RiderProjects\APICodeMetrics\APICodeMetrics.Data\obj\Debug\net9.0\APICodeMetrics.Data.pdb
 C:\Users\Zhere\RiderProjects\APICodeMetrics\APICodeMetrics.Data\obj\Debug\net9.0\ref\APICodeMetrics.Data.dll
+C:\Users\Zhere\OneDrive\Документы\GitHub\CodeMetrics\APICodeMetrics.Data\bin\Debug\net9.0\APICodeMetrics.Data.deps.json
+C:\Users\Zhere\OneDrive\Документы\GitHub\CodeMetrics\APICodeMetrics.Data\bin\Debug\net9.0\APICodeMetrics.Data.dll
+C:\Users\Zhere\OneDrive\Документы\GitHub\CodeMetrics\APICodeMetrics.Data\bin\Debug\net9.0\APICodeMetrics.Data.pdb
+C:\Users\Zhere\OneDrive\Документы\GitHub\CodeMetrics\APICodeMetrics.Data\obj\Debug\net9.0\APICodeMetrics.Data.csproj.AssemblyReference.cache
+C:\Users\Zhere\OneDrive\Документы\GitHub\CodeMetrics\APICodeMetrics.Data\obj\Debug\net9.0\APICodeMetrics.Data.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\Zhere\OneDrive\Документы\GitHub\CodeMetrics\APICodeMetrics.Data\obj\Debug\net9.0\APICodeMetrics.Data.AssemblyInfoInputs.cache
+C:\Users\Zhere\OneDrive\Документы\GitHub\CodeMetrics\APICodeMetrics.Data\obj\Debug\net9.0\APICodeMetrics.Data.AssemblyInfo.cs
+C:\Users\Zhere\OneDrive\Документы\GitHub\CodeMetrics\APICodeMetrics.Data\obj\Debug\net9.0\APICodeMetrics.Data.csproj.CoreCompileInputs.cache
+C:\Users\Zhere\OneDrive\Документы\GitHub\CodeMetrics\APICodeMetrics.Data\obj\Debug\net9.0\APICodeMetrics.Data.sourcelink.json
+C:\Users\Zhere\OneDrive\Документы\GitHub\CodeMetrics\APICodeMetrics.Data\obj\Debug\net9.0\APICodeMetrics.Data.dll
+C:\Users\Zhere\OneDrive\Документы\GitHub\CodeMetrics\APICodeMetrics.Data\obj\Debug\net9.0\refint\APICodeMetrics.Data.dll
+C:\Users\Zhere\OneDrive\Документы\GitHub\CodeMetrics\APICodeMetrics.Data\obj\Debug\net9.0\APICodeMetrics.Data.pdb
+C:\Users\Zhere\OneDrive\Документы\GitHub\CodeMetrics\APICodeMetrics.Data\obj\Debug\net9.0\ref\APICodeMetrics.Data.dll

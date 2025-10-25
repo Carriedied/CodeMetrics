@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "rKZjXIIk9gM=",
+  "dgSpecHash": "Oi8oPhi9/vs=",
   "success": true,
-  "projectFilePath": "C:\\Users\\Zhere\\RiderProjects\\APICodeMetrics\\APICodeMetrics.Data\\APICodeMetrics.Data.csproj",
+  "projectFilePath": "C:\\Users\\Zhere\\OneDrive\\Документы\\GitHub\\CodeMetrics\\APICodeMetrics.Data\\APICodeMetrics.Data.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\Zhere\\.nuget\\packages\\microsoft.entityframeworkcore\\9.0.1\\microsoft.entityframeworkcore.9.0.1.nupkg.sha512",
     "C:\\Users\\Zhere\\.nuget\\packages\\microsoft.entityframeworkcore.abstractions\\9.0.1\\microsoft.entityframeworkcore.abstractions.9.0.1.nupkg.sha512",
